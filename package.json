@@ -1,0 +1,12 @@
+{
+  "name": "robot",
+  "type": "tools",
+  "version": "1.0.0",
+  "description": "聊天机器人",
+  "bin": [],
+  "keywords": [
+    "sunday",
+    "tools"
+  ],
+  "author": "ct"
+}
