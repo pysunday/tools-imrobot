@@ -24,13 +24,13 @@ class Xiaoi():
     def getCurrentTime(self):
         # 当前时间戳
         return int(time.time() * 1000)
-    
+
     def parseData(self, text):
         # 解析数据
         text = re.sub(r'(\n|\r)', '', text)
         data = re.findall(r'__webrobot_{1,2}process(?:Msg|OpenResponse)\((.*?)\);', text)
         return [json.loads(item) for item in data]
-    
+
     def open(self):
         # 初始化并获取cookie和会话数据
         data = { "type": "open" }
@@ -64,14 +64,14 @@ class Xiaoi():
         data = { "type": "sessionopen" }
         data.update(pick(self.sessionData, ['robotId', 'userId', 'sessionId']))
         res = self.fetch.get(processMsg % (json.dumps(data), self.getCurrentTime()))
-        self.console(self.parseData(res.text))
+        return self.console(self.parseData(res.text))
 
     def askText(self, text):
         # 与机器人对话
         data = { "body": { "content": text }, "type": "txt" }
         data.update(pick(self.sessionData, ['robotId', 'userId', 'sessionId']))
         res = self.fetch.get(processMsg % (json.dumps(data), self.getCurrentTime()))
-        self.console(self.parseData(res.text))
+        return self.console(self.parseData(res.text))
 
     def console(self, ans):
         # 打印或返回机器人回话内容
@@ -79,9 +79,13 @@ class Xiaoi():
         for item in ans:
             if item.get('type') == 'txt':
                 content = get(item, 'body.content') or '哈哈 卡壳了'
+                content = content.strip()
                 if self.isConsole: print('机器人: %s' % content)
-                else: rets.append(content)
-        if not self.isConsole: return '\n'.join(rets)
+                rets.append(content)
+        if not self.isConsole:
+            self.logger.info('机器人回话: %s' % rets)
+            return '\n'.join(rets)
+        return ''
 
     def chat(self):
         while True:
