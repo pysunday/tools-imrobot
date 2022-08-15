@@ -27,6 +27,7 @@ class Xiaoi():
 
     def parseData(self, text):
         # 解析数据
+        self.logger.debug('解析机器人返回数据: %s' % text)
         text = re.sub(r'(\n|\r)', '', text)
         data = re.findall(r'__webrobot_{1,2}process(?:Msg|OpenResponse)\((.*?)\);', text)
         return [json.loads(item) for item in data]
