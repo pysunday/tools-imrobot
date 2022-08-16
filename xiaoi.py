@@ -82,8 +82,10 @@ class Xiaoi():
                 content = get(item, 'body.content') or '哈哈 卡壳了'
                 content = content.strip()
                 if self.isConsole: print('机器人: %s' % content)
-                rets.append(content)
+                # 当机器人回答不上来就会返回defaultReply
+                if content != 'defaultReply': rets.append(content)
         if not self.isConsole:
+            rets.append('--来自小i机器人')
             self.logger.info('机器人回话: %s' % rets)
             return '\n'.join(rets)
         return ''
