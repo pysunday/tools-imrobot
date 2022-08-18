@@ -25,8 +25,8 @@ sunday的聊天机器人模块
 ### 引入
 
 ```python
-from sunday.tools.robot import Xiaoi
-from sunday.tools.robot.xiaoi import Xiaoi
+from sunday.tools.imrobot import Xiaoi
+from sunday.tools.imrobot.xiaoi import Xiaoi
 ```
 
 ### 使用

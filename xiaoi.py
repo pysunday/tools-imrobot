@@ -6,7 +6,7 @@ import inquirer
 from inquirer.themes import GreenPassion
 from threading import Timer
 from sunday.core import Logger, Fetch, exit
-from sunday.tools.robot.config import processOpenResponse, processMsg
+from sunday.tools.imrobot.config import processOpenResponse, processMsg
 from pydash import pick, get
 
 class Xiaoi():
@@ -85,7 +85,7 @@ class Xiaoi():
                 # 当机器人回答不上来就会返回defaultReply
                 if content != 'defaultReply': rets.append(content)
         if not self.isConsole:
-            rets.append('--来自小i机器人')
+            if len(rets) > 0: rets.append('--来自小i机器人')
             self.logger.info('机器人回话: %s' % rets)
             return '\n'.join(rets)
         return ''
