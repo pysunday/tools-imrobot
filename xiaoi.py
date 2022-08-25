@@ -14,7 +14,7 @@ class Xiaoi():
         """
         isConsole: 标记是直接打印还是返回文本
         """
-        self.logger = Logger('机器人小i').getLogger()
+        self.logger = Logger('小i机器人').getLogger()
         self.fetch = Fetch()
         self.timer = None
         self.sessionData = None
