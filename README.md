@@ -16,8 +16,6 @@ sunday的聊天机器人模块
 
 # 青云客机器人
 
-# 茉莉机器人
-
 ## 试玩
 
 执行命令：`python3 qingyunke.py`
@@ -39,6 +37,8 @@ qingyunke = Qingyunke()
 # 4. 与机器人聊天
 print(qingyunke.askText('你是谁'))
 ```
+
+# 茉莉机器人
 
 ## 试玩
 
