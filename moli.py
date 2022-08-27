@@ -18,8 +18,8 @@ class Moli():
         self.fetch = self.getFetch(key, secret)
 
     def getFetch(self, key, secret):
+        fetch = Fetch()
         if self.isConsole:
-            fetch = Fetch()
             pwd = os.path.dirname(os.path.abspath(__file__))
             (getenv, setenv, getfile) = enver(os.path.join(pwd, '.env'))
             key = getenv('MOLI_KEY')
